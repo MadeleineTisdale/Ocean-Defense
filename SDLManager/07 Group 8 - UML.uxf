@@ -1,0 +1,216 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>340</x><y>240</y><w>330</w><h>230</h></coordinates><panel_attributes>/MovingObject/
+--
+# mSpeed : int
+# mbIsOnScreen : bool
+--
++ MovingObject (string = "", int = 0, int = 0,
+                          const Direction2D &amp; = Direction2D::E, 
+                           int = 1)
+
+/+ update () : void/
+
++ spawn (int, int) : void
+/+ spawnRandom () = 0 : void/
+
++ isOnScreen () : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>910</x><y>1010</y><w>270</w><h>270</h></coordinates><panel_attributes>User 
+-
+_+FILE_NAME : string_
+- mHealth : int
+- mTrashCollected : int
+-
++ User (int = 0, int = 0, int = 5, int = 0);
+	
++ move (int xCoord, int yCoord) : void
++ hit () : void
++ collectTrash () : void
+
++ collision (MovingObject *) : bool 
++ collisionWithBoss (TrashMonster &amp;) : bool
++ isAlive () const : bool
+
++ getTrash () const : int
++ getHealth () const : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>700</y><w>290</w><h>170</h></coordinates><panel_attributes>Shark
+-
+_+ FILE_NAME: string _
+_- MAX_SPEED : int_
+_- MIN_SPEED : int_
+-
++ Shark(int = 0, int = 0, const Direction2D &amp; 
+              = Direction2D::E, int = 1)
+
+/+ spawnRandom(): void/
++ collision(const ShootingElement &amp;) const : bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1140</x><y>0</y><w>310</w><h>170</h></coordinates><panel_attributes>Trash
+--
+_+ FILE_NAME: string _
+_- MAX_SPEED : int_
+_- MIN_SPEED : int_
+--
++ Trash (int = 0, int = 0, 
+            const Direction2D &amp; = Direction2D::E,
+            int = 1)
+
+/+ spawnRandom (): void/
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>1590</y><w>300</w><h>280</h></coordinates><panel_attributes>ShootingElements
+-
+_+ FILE_NAME: string _
+_- MAX_SPEED : int_
+_- MIN_SPEED : int_
+-
++ ShootingElement (int = 0, int = 0, 
+            const Direction2D &amp; = Direction2D::S,
+            int = 10)
+
+/+ spawnRandom (): void/
++ collision (MovingObject *): bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>270</y><w>300</w><h>180</h></coordinates><panel_attributes>Jellyfish
+--
+_+ FILE_NAME: string _
+_- MAX_SPEED : int_
+_- MIN_SPEED : int_
+--
++ Jellyfish (int = 0, int = 0, 
+            const Direction2D &amp; = Direction2D::E,
+            int = 1)
+
+/+ spawnRandom (): void/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>1620</y><w>320</w><h>170</h></coordinates><panel_attributes>TrashMonster
+-
+_+ FILE_NAME: string _
+- mHealth: int
+-
++ TrashMonster (int = 0, int = 160, 
+                           const Direction2D &amp; = Direction2D::S, 
+                           int = 10)
+
++ isAlive () const : bool
++ collision (const ShootingElement *) const : bool
++ hit () : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1980</x><y>1110</y><w>360</w><h>520</h></coordinates><panel_attributes>OceanDefense
+-
+- *mpcStageOne : StageOne 
+- *mpcStageTwo : StageTwo 
+- *mpcStageThree : StageThree 
+- mcUser : User 
+- mbIsStarted : bool 
+
+-
++ OceanDefense ()
++ ~OceanDefense ()
+
++ drawStartInstructions (SDLManager &amp;) const : void 
++ drawGameOver (SDLManager &amp;) : void
++ drawGameScore (SDLManager &amp;) : void
++ drawWin (SDLManager &amp;) : void
++ drawUser () : void 
++ drawObjects () : void 
++ drawGameScores (SDLManager &amp;) : void 
++ calcGameScore () : int 
+
++ updateUser (int , int )  : void 
++ updateObjects () : void 
++ handleCollisions (SDLManager &amp;) : void 
+
++ isGameStarted () const : bool
++ startGame ()  : void 
++ beginNewStage ()  : void 
+
++ isStageOneDone () const : bool
++ isStageTwoDone () const : bool
++ isStageThreeDone () const : bool
++ isGameDone () : bool
++ playAgain () : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>240</x><y>760</y><w>220</w><h>190</h></coordinates><panel_attributes>SDLMovingSprite
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>430</x><y>1270</y><w>190</w><h>180</h></coordinates><panel_attributes>SDLSprite
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1310</x><y>1410</y><w>370</w><h>580</h></coordinates><panel_attributes>StageThree
+--
+_- SIZE_WAVE : int_
+_- MAX_SHARKS : int_
+- mUser : User
+- *mapcSharks[MAX_SHARKS] : Shark
+- mTrashBoss : TrashMonster
+- *mpcSpear : ShootingElement 
+- mSize : int
+-  mRotation : double
+- mbIsDone : bool
+--
++ StageThree (User)
++ StageThree ()
++ ~StageThree ()
+
++ createPredators () : void
++ draw () : void 
++ update () : void
++ updateUser (int , int ) : void
++ getUser () const : User
+
++ collisionWithShark (SDLManager &amp;) : void
++ spearCollisionShark (SDLManager &amp;) : void
++ spearCollisionBoss (SDLManager &amp;) : void
++ collisionWithBoss (SDLManager &amp;) : void
++ handleCollision (SDLManager &amp;) : void
+
++ areSharksDone () : bool
+
++ playBiteSound (SDLManager &amp;) const : void
++ playBossSound (SDLManager &amp;) const : void
++ playOuchSound (SDLManager &amp;) const : void
+
++ isSpearDone () : bool
++ isSpearOnScreen () : bool
+
++ bossDefeated () : void
++ isDone () : bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1250</x><y>260</y><w>430</w><h>410</h></coordinates><panel_attributes>StageTwo
+--
+_- MAX_JELLYFISH: int_
+_- MAX_TRASH: int_
+_- SIZE_WAVE: int_
+- *mapcJellyfish[MAX_JELLYFISH] : Jellyfish
+- *mapcTrash[MAX_TRASH] : Trash
+- mcUser : User
+- mbJellyIsDone : bool
+- mNumJellyfish : int
+- mNumTrash : int
+--
++ StageTwo (const User &amp;)
++ StageTwo ()
++ ~StageTwo ()
++ createJellyfishAndTrash () :void
++ draw () : void
++ update () :void
++ updateUser (int, int):void
++ handleCollision (SDLManager &amp;) :void
++ isDone () : bool
++ areJellyfishDone () :bool
++ isTrashDone () : bool
++ getUser () const : User
+
++ playJellySound (SDLManager &amp;) const : void
++ playTrashSound (SDLManager &amp;) const : void
+
+	
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1290</x><y>890</y><w>390</w><h>360</h></coordinates><panel_attributes>StageOne
+--
+_- MAX_SHARKS : int_
+_- SIZE_WAVE : int_
+- mcUser : User
+- *mpacSharks[MAX_SHARKS] : Shark
+- mbIsDone : bool
+- mSizeSharks : int
+--
++ StageOne (User )
++ StageOne ()
++ ~StageOne ()
+
++ addSharks () : void
++ draw () const : void
++ update (): void
++ updateUser (int, int) : void
++ handleCollision (SDLManager &amp;): void
+
++ isDone (): bool
++ areSharksDone () const: bool
++ playOuchSound (SDLManager &amp;) const : void
++ getUser () const : User</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>1070</y><w>410</w><h>220</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;200;10;10;390;10</additional_attributes></element><element><id>Relation</id><coordinates><x>490</x><y>1440</y><w>30</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100;10;180</additional_attributes></element><element><id>Relation</id><coordinates><x>1270</x><y>160</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1160</x><y>350</y><w>110</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>980</x><y>1270</y><w>350</w><h>370</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>330;350;10;350;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1040</x><y>570</y><w>230</w><h>460</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>210;10;10;10;10;440</additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>780</y><w>730</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>710;110;710;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1170</x><y>1040</y><w>140</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1060</x><y>1210</y><w>940</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>920;10;710;10;710;130;10;130;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>670</x><y>1680</y><w>660</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>640;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>140</y><w>660</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;100;10;10;640;10</additional_attributes></element><element><id>Relation</id><coordinates><x>660</x><y>350</y><w>230</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;10;120;70;210;70</additional_attributes></element><element><id>Relation</id><coordinates><x>480</x><y>460</y><w>160</w><h>260</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;150;140;150;140;240</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>860</y><w>720</w><h>690</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>700;670;270;670;270;370;10;370;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>290</x><y>1810</y><w>1040</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>1020;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>330</y><w>220</w><h>1280</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>200;10;10;10;10;1260</additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>460</y><w>110</w><h>320</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;300;10;170;90;170;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>940</y><w>120</w><h>450</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>100;430;10;430;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1670</x><y>500</y><w>420</w><h>630</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>400;610;400;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1670</x><y>1080</y><w>330</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>310;80;180;80;180;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1670</x><y>1580</y><w>330</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>310;10;10;10</additional_attributes></element></diagram>
