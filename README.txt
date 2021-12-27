@@ -1,3 +1,5 @@
+NOTE: Code files in OceanDefense folder.
+
 //****************************************************************************
 // LOG OF ACTIVITY:
 // 4/26/19 (4:15pm - 5:57pm) - Madeleine: Created the projects (Graphics2D and
